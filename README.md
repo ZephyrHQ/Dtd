@@ -22,4 +22,4 @@ Une DTD particulière peut être appelée avec l'adresse suivante :
 Notes
 -----
 
-L'utilisation d'un dépot github publix permet de conserver un accès public et ouvert au plus grand nombre.
+L'utilisation d'un dépot github public permet de conserver un accès ouvert au plus grand nombre.
