@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema 
+    xmlns="https://raw.github.com/nicodmf"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="https://raw.github.com/nicodmf"
+    elementFormDefault="qualified">
+     
+    <xsd:element name="designer" type="designer" />
+  
+    <xsd:complexType name="designer">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[
+        The root element of a designer file.
+      ]]></xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="informations" type="informations"/>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="parts" type="parts" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="groups" type="groups"/>
+            <xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+  
+  
+    <xsd:complexType name="informations">
+        <xsd:attribute name="version" use="required"/>
+        <xsd:attribute name="author" use="required"/>
+        <xsd:attribute name="date" use="required"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="parts">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="part" type="part"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" use="required"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="part">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="parameter" type="parameter"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" use="required"/>
+    </xsd:complexType>
+  
+    <xsd:complexType mixed="true" type="parameter">
+        <xsd:attribute name="name" use="required"/>
+        <xsd:attribute name="type" use="required">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="color"/>
+                    <xsd:enumeration value="width"/>
+                    <xsd:enumeration value="font"/>
+                    <xsd:enumeration value="text"/>
+                    <xsd:enumeration value="group"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="alternative" use="required">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="simple"/>
+                    <xsd:enumeration value="hover"/>
+                    <xsd:enumeration value="active"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+    </xsd:complexType>
+    
+    <xsd:complexType name="groups">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="group" type="group"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="group">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="parameter" type="parameter"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" use="required"/>
+    </xsd:complexType>
+    
+</xsd:schema>
